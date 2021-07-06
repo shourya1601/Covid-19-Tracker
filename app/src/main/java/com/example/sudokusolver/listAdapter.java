@@ -2,6 +2,8 @@ package com.example.sudokusolver;
 
 
 import android.app.Activity;
+import android.content.Intent;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -45,6 +47,18 @@ public class listAdapter extends ArrayAdapter<statesData> {
         tvDeceased.setText(states.getDeceased());
         tvRecovered.setText(states.getRecovered());
         tvTotal.setText(states.getTotal());
+
+        view.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Bundle bdl=new Bundle();
+                bdl.putString("state",states.getState());
+                Intent intent=new Intent(context,districtData.class);
+                intent.putExtras(bdl);
+                context.startActivity(intent);
+            }
+        });
+
         return view;
     }
 }

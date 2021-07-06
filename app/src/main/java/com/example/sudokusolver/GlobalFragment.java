@@ -8,7 +8,9 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.AnimationUtils;
 import android.widget.TextView;
+import android.widget.ViewFlipper;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -24,7 +26,8 @@ import org.json.JSONObject;
 public class GlobalFragment extends Fragment {
 
     TextView tvcases,tvrecovered,tvdeceased;
-    int cases=0,deceased=0,recovered=0;
+    long cases=0,deceased=0,recovered=0;
+    ViewFlipper vf;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -35,6 +38,12 @@ public class GlobalFragment extends Fragment {
         tvcases=view.findViewById(R.id.cases);
         tvdeceased=view.findViewById(R.id.deceased);
         tvrecovered=view.findViewById(R.id.recovered);
+
+        vf=view.findViewById(R.id.vf);
+        vf.setInAnimation(AnimationUtils.loadAnimation(getContext(),R.anim.push_left_in));
+        vf.setOutAnimation(AnimationUtils.loadAnimation(getContext(),R.anim.push_left_out));
+        vf.setFlipInterval(7000);
+        vf.startFlipping();
 
         ProgressDialog pd=new ProgressDialog(getActivity());
         pd.setMessage("Please Wait...");
@@ -52,16 +61,16 @@ public class GlobalFragment extends Fragment {
                     pd.dismiss();
 
                 try {
-                    cases=response.getInt("cases");
-                    deceased=response.getInt("deaths");
-                    recovered=response.getInt("recovered");
+                    cases=response.getLong("cases");
+                    deceased=response.getLong("deaths");
+                    recovered=response.getLong("recovered");
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
 
-                tvcases.setText(cases);
-                tvrecovered.setText(recovered);
-                tvdeceased.setText(deceased);
+                tvcases.setText(""+cases);
+                tvrecovered.setText(""+recovered);
+                tvdeceased.setText(""+deceased);
 
             }
         }, new Response.ErrorListener() {

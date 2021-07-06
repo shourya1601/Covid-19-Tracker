@@ -1,27 +1,89 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content">
+
+    <RelativeLayout
+        android:id="@+id/rl"
+        android:layout_width="match_parent"
+        android:layout_height="250dp"
+        android:background="#0e134f">
+
+        <ViewFlipper
+            android:id="@+id/vf"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="30dp"
+            android:focusable="true">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:background="@drawable/view_flipper">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/global_img1"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:background="@drawable/view_flipper">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/global_img2"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:background="@drawable/view_flipper">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/global_img3"/>
+
+            </LinearLayout>
+
+        </ViewFlipper>
+
+    </RelativeLayout>
 
     <LinearLayout
         android:id="@+id/ll1"
+        android:layout_below="@+id/rl"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:background="@drawable/round_corner"
+        android:layout_margin="5dp"
+        android:padding="5dp">
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="CORONAVIRUS CASES"
             android:textStyle="bold"
-            android:textSize="20dp"/>
+            android:textSize="25dp"
+            android:textColor="@color/black"/>
 
         <TextView
             android:id="@+id/cases"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="cases"
-            android:textSize="15dp"/>
+            android:textSize="20dp"
+            android:textColor="@color/black"/>
 
     </LinearLayout>
 
@@ -30,21 +92,26 @@
         android:layout_below="@+id/ll1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:background="@drawable/round_corner"
+        android:layout_margin="5dp"
+        android:padding="5dp">
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="DECEASED"
             android:textStyle="bold"
-            android:textSize="20dp"/>
+            android:textSize="25dp"
+            android:textColor="@color/black"/>
 
         <TextView
             android:id="@+id/deceased"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="deceased"
-            android:textSize="15dp"/>
+            android:textSize="20dp"
+            android:textColor="@color/black"/>
 
     </LinearLayout>
 
@@ -53,21 +120,26 @@
         android:layout_below="@+id/ll2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:background="@drawable/round_corner"
+        android:layout_margin="5dp"
+        android:padding="5dp">
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="RECOVERED"
             android:textStyle="bold"
-            android:textSize="20dp"/>
+            android:textSize="25dp"
+            android:textColor="@color/black"/>
 
         <TextView
             android:id="@+id/recovered"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="recovered"
-            android:textSize="15dp"/>
+            android:textSize="20dp"
+            android:textColor="@color/black"/>
 
     </LinearLayout>
 

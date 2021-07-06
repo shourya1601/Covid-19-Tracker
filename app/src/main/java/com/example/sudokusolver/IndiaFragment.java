@@ -9,10 +9,12 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.ViewFlipper;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -39,8 +41,9 @@ import java.util.ArrayList;
 
 public class IndiaFragment extends Fragment {
 
-    TextView tvactive,tvrecovered,tvdeceased,tvconfirmed;
+    TextView tvactive,tvrecovered,tvdeceased,tvconfirmed,tvactivenew,tvrecoverednew,tvdeceasednew;
     Button btActive,btRecovered,btDeceased,btTotal;
+    ViewFlipper vf;
 
     JSONArray jsonArray;
     int activeCases=0;
@@ -74,11 +77,20 @@ public class IndiaFragment extends Fragment {
         tvrecovered=view.findViewById(R.id.recovered);
         tvdeceased=view.findViewById(R.id.deceased);
         tvconfirmed=view.findViewById(R.id.confirmed);
+        tvactivenew=view.findViewById(R.id.activenew);
+        tvrecoverednew=view.findViewById(R.id.recoverednew);
+        tvdeceasednew=view.findViewById(R.id.deceasednew);
 
         btActive=view.findViewById(R.id.btAvtive);
         btRecovered=view.findViewById(R.id.btRecovered);
         btDeceased=view.findViewById(R.id.btDeceased);
         btTotal=view.findViewById(R.id.btTotalCases);
+
+        vf=view.findViewById(R.id.vf);
+        vf.setInAnimation(AnimationUtils.loadAnimation(getContext(),R.anim.push_left_in));
+        vf.setOutAnimation(AnimationUtils.loadAnimation(getContext(),R.anim.push_left_out));
+        vf.setFlipInterval(7000);
+        vf.startFlipping();
 
         barGraph=view.findViewById(R.id.bar);
 
@@ -110,10 +122,13 @@ public class IndiaFragment extends Fragment {
                     e.printStackTrace();
                 }
 
-                tvactive.setText("Active\n"+activeCases+"\n"+activeCasesNew);
-                tvrecovered.setText("Recovered\n"+recovered+"\n"+recoveredNew);
-                tvdeceased.setText("Deceased\n"+deceased+"\n"+deceasedNew);
-                tvconfirmed.setText("Total Cases\n"+totalCases);
+                tvactive.setText(""+activeCases);
+                tvactivenew.setText("("+activeCasesNew+")");
+                tvrecovered.setText(""+recovered);
+                tvrecoverednew.setText("("+recoveredNew+")");
+                tvdeceased.setText(""+deceased);
+                tvdeceasednew.setText("("+deceasedNew+")");
+                tvconfirmed.setText(""+totalCases);
 
                 for(int i=0;i<jsonArray.length();++i)
                 {
@@ -212,14 +227,11 @@ public class IndiaFragment extends Fragment {
     void drawBarGraph(BarChart barChart,ArrayList<BarEntry> barEntry,String description)
     {
         BarDataSet bds=new BarDataSet(barEntry,"state");
-        bds.setBarBorderColor(Color.BLACK);
-        bds.setBarBorderWidth(1);
         BarData bd=new BarData(bds);
         bd.setBarWidth(0.5f);
         barChart.setData(bd);
-        bds.setColors(ColorTemplate.COLORFUL_COLORS);
+        bds.setColors(Color.rgb(106, 82, 122));
         barChart.getDescription().setText(description);
-        barChart.setBackgroundColor(Color.rgb(255,204,255));
         barChart.setVisibleXRangeMaximum(10);
         barChart.setFitBars(true);
         barChart.setDoubleTapToZoomEnabled(false);

@@ -8,6 +8,7 @@ import androidx.fragment.app.FragmentPagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
 import android.os.Bundle;
+import android.widget.Toast;
 
 import com.google.android.material.tabs.TabLayout;
 
@@ -18,6 +19,8 @@ public class MainActivity extends AppCompatActivity {
 
     TabLayout tabLayout;
     ViewPager viewPager;
+
+    private long backPressedTime;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,6 +50,12 @@ public class MainActivity extends AppCompatActivity {
         bundle0.putString("title",arrayList.get(0));
         global.setArguments(bundle0);
         adapter.addFragment(global,arrayList.get(0));
+
+        CountriesFragment countries=new CountriesFragment();
+        Bundle bundle1=new Bundle();
+        bundle1.putString("title",arrayList.get(1));
+        countries.setArguments(bundle1);
+        adapter.addFragment(countries,arrayList.get(1));
 
         IndiaFragment india=new IndiaFragment();
         Bundle bundle2=new Bundle();
@@ -87,5 +96,20 @@ public class MainActivity extends AppCompatActivity {
         {
             return arrayList.get(position);
         }
+    }
+
+    @Override
+    public void onBackPressed() {
+        if(backPressedTime+2000>System.currentTimeMillis())
+        {
+            super.onBackPressed();
+            finishAffinity();
+            return;
+        }
+        else
+        {
+            Toast.makeText(MainActivity.this,"Press again to exit",Toast.LENGTH_SHORT).show();
+        }
+        backPressedTime=System.currentTimeMillis();
     }
 }

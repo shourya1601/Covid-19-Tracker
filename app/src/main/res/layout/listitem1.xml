@@ -13,14 +13,21 @@
         android:background="#1f0747">
 
         <TextView
-            android:id="@+id/state"
-            android:layout_width="match_parent"
+            android:id="@+id/country"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:text="Country"
             android:textStyle="bold"
             android:textColor="@color/white"
             android:textSize="18dp"
-            android:layout_marginLeft="2dp"
-            android:text="State"/>
+            android:layout_marginLeft="2dp"/>
+
+        <TextView
+            android:id="@+id/tests"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="tests"
+            android:textColor="@color/white"/>
 
     </LinearLayout>
 
@@ -55,10 +62,10 @@
             android:textColor="@color/black"/>
 
         <TextView
-            android:id="@+id/total"
+            android:id="@+id/cases"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="total"
+            android:text="cases"
             android:layout_weight="1"
             android:textColor="@color/black"/>
 
